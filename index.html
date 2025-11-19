@@ -1,689 +1,698 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Souvik Sarkar, a Research Professional and Data Analyst.">
-    <title>Souvik Sarkar - Research Professional</title>
+    <title>Souvik Sarkar - Researcher & Data Analyst</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Animate On Scroll (AOS) Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.trunk.min.js"></script> -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* Base font */
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
         }
-        .vanta-bg {
-            min-height: 100vh;
+
+        /* Animated gradient for hero text */
+        .animated-gradient {
+            background: linear-gradient(90deg, #6366F1, #A855F7, #EC4899, #A855F7, #6366F1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 5s ease-in-out infinite;
         }
-        .skill-pill {
-            transition: all 0.3s ease;
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        .skill-pill:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+        /* Pulsing dot for "Present" timeline item */
+        .timeline-dot-present::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #6366F1; /* indigo-500 */
+            animation: pulse 1.5s infinite ease-in-out;
         }
-   .timeline-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 1rem; /* The new, centered position */
-    top: 2rem;  /* The new, correct starting point */
-    height: calc(100% - 2rem);
-    width: 2px;
-    background-color: #e5e7eb;
-    /* This line centers the bar on its own axis */
-    transform: translateX(-1px); 
-}
-        .mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        .mobile-menu.open {
-            max-height: 500px;
-            padding: 1rem;
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white shadow-sm z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold text-indigo-600">Souvik Sarkar</span>
+<body class="bg-gray-100 text-gray-900 overflow-x-hidden">
+
+    <!-- ========== HEADER & NAVIGATION ========== -->
+    <header class="fixed top-0 left-0 right-0 bg-white/60 backdrop-blur-2xl backdrop-saturate-150 shadow-sm z-50 border-b border-white/20">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Name -->
+                <div class="flex-shrink-0">
+                    <a href="#hero" class="text-xl font-bold text-gray-800">Souvik Sarkar</a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
-                    <a href="#experience" class="text-gray-700 hover:text-indigo-600 transition">Experience</a>
-                    <a href="#education" class="text-gray-700 hover:text-indigo-600 transition">Education</a>
-                    <a href="#skills" class="text-gray-700 hover:text-indigo-600 transition">Skills</a>
-                    <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition">Projects</a>
-                    <a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Contact</a>
+                
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex md:items-center md:space-x-6">
+                    <a href="#about" class="text-gray-600 hover:text-indigo-600 transition">About</a>
+                    <a href="#skills" class="text-gray-600 hover:text-indigo-600 transition">Skills</a>
+                    <a href="#experience" class="text-gray-600 hover:text-indigo-600 transition">Experience</a>
+                    <a href="#projects" class="text-gray-600 hover:text-indigo-600 transition">Projects</a>
+                    <a href="#education" class="text-gray-600 hover:text-indigo-600 transition">Education</a>
+                    <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
                 </div>
+                
+                <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="menu-btn" class="text-gray-700">
-                        <i data-feather="menu"></i>
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-gray-600 hover:bg-gray-200 transition">
+                        <i data-feather="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
             </div>
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="mobile-menu md:hidden bg-white absolute left-0 right-0 shadow-lg">
-                <div class="flex flex-col space-y-4">
-                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
-                    <a href="#experience" class="text-gray-700 hover:text-indigo-600 transition">Experience</a>
-                    <a href="#education" class="text-gray-700 hover:text-indigo-600 transition">Education</a>
-                    <a href="#skills" class="text-gray-700 hover:text-indigo-600 transition">Skills</a>
-                    <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition">Projects</a>
-                    <a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition text-center">Contact</a>
-                </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-white/20">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">About</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Skills</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Experience</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Projects</a>
+                <a href="#education" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Education</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Contact</a>
             </div>
         </div>
-    </nav>
-    <!-- Hero Section with Vanta.js Globe -->
-    <section id="hero" class="vanta-bg flex items-center justify-center pt-16">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">Souvik Sarkar</h1>
-            <h2 class="text-2xl md:text-3xl text-indigo-600 mb-6">Research Professional | Data Analyst | Population Studies</h2>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-                Transforming data into actionable insights for public health and policy development.
-            </p>
-            <div class="flex justify-center space-x-4">
-                <a href="#contact" class="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Get In Touch</a>
-                <a href="https://souvikio.github.io/assets/Souvik_Sarkar_CV.pdf" target="_blank" class="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-50 transition">Download CV</a>
-            </div>
-        </div>
-    </section>
+    </header>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    <div class="w-74 h-74 rounded-full overflow-hidden shadow-*">
-                        <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/Souvik%20Sarkar%202025.png
-" alt="Souvik Sarkar" class="w-full h-full object-cover">
-                    </div>
-                </div>
-                <div class="md:w-2/3 md:pl-12">
-                    <h2 class="text-3xl font-bold mb-6">About Me</h2>
-                    <p class="text-lg text-gray-600 mb-6">
-                        A research professional currently working as a Research Assistant at IIPS Mumbai. I hold a Master of Science (MSc.) in Population Studies from IIPS, with an academic foundation in Geography and a qualified UGC JRF in Population Studies.
-                    </p>
-                    <p class="text-lg text-gray-600 mb-8">
-                        Skilled in demographic analysis, geospatial tools, data visualization, and monitoring and evaluation, with proficiency in Excel, R, STATA, ArcGIS, and Power BI. Experienced in using data-driven insights to address societal challenges in public health, population dynamics, and policy development.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex items-center">
-                            <i data-feather="mail" class="mr-2 text-indigo-600"></i>
-                            <span>souviksarkariips@gmail.com</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i data-feather="phone" class="mr-2 text-indigo-600"></i>
-                            <span>+91 82502 73592</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i data-feather="map-pin" class="mr-2 text-indigo-600"></i>
-                            <span>Mumbai, Maharashtra, 400088</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="pt-16">
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Professional Experience</h2>
-            
-            <div class="space-y-8">
-                <!-- IIPS Experience -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="flex items-start">
-                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
-                            <i data-feather="pie-chart" class="text-indigo-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold">Research Assistant</h3>
-                            <p class="text-indigo-600">International Institute for Population Sciences (IIPS)</p>
-                            <p class="text-gray-500">August 2025 - Present | Mumbai, India</p>
-                            <p class="mt-4 text-gray-700">Project: "Demographic and Social Perspective of Suicide Deaths in India"</p>
-                            <ul class="mt-4 space-y-2">
-                                <li class="flex items-start">
-                                    <i data-feather="check" class="text-indigo-600 mr-2 mt-1"></i>
-                                    <span>Managing and compiling government data for the project on suicide deaths in India.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i data-feather="check" class="text-indigo-600 mr-2 mt-1"></i>
-                                    <span>Writing codes and programs for analytical outcomes using statistical software (R, STATA, SPSS, ArcGIS).</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i data-feather="check" class="text-indigo-600 mr-2 mt-1"></i>
-                                    <span>Preparing manuscripts and presentations to communicate research findings and recommendations.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Hans Foundation Experience -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="flex items-start">
-                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
-                            <i data-feather="pie-chart" class="text-indigo-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold">Research Intern</h3>
-                            <p class="text-indigo-600">The Hans Foundation</p>
-                            <p class="text-gray-500">April 2024 - June 2024 | Meghalaya, India</p>
-                            <ul class="mt-4 space-y-2">
-                                <li class="flex items-start">
-                                    <i data-feather="check" class="text-indigo-600 mr-2 mt-1"></i>
-                                    <span>Researched Traditional Birth Attendants' role in maternal health in Ri Bhoi District sub-centers.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i data-feather="check" class="text-indigo-600 mr-2 mt-1"></i>
-                                    <span>Collected primary data using Focus Group Discussions, questionnaires, and observations.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i data-feather="check" class="text-indigo-600 mr-2 mt-1"></i>
-                                    <span>Co-authored a report proposing community interventions to enhance institutional deliveries.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- AG Consultancy Experience -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="flex items-start">
-                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
-                            <i data-feather="clipboard" class="text-indigo-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold">Supervisor</h3>
-                            <p class="text-indigo-600">AG Consultancy</p>
-                            <p class="text-gray-500">June 2024 | Remote</p>
-                            <ul class="mt-4 space-y-2">
-                                <li class="flex items-start">
-                                    <i data-feather="check" class="text-indigo-600 mr-2 mt-1"></i>
-                                    <span>Monitored enumerators during field surveys for the ICRISAT Flood Insurance Project.</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i data-feather="check" class="text-indigo-600 mr-2 mt-1"></i>
-                                    <span>Managed a team of enumerators, offering guidance and support.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Education</h2>
-            
-            <div class="relative">
-                <!-- IIPS -->
-                <div class="timeline-item mb-8 pl-12 relative">
-                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white">
-                        <i data-feather="award"></i>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                        <h3 class="text-xl font-bold">Master of Science in Population Studies</h3>
-                        <p class="text-indigo-600">International Institute for Population Sciences (IIPS)</p>
-                        <p class="text-gray-500">July 2023 - May 2025 | Mumbai, India</p>
-                        <p class="mt-2 text-gray-700">CGPA: 8.02/10</p>
-                    </div>
-                </div>
-                
-                <!-- APC College -->
-                <div class="timeline-item mb-8 pl-12 relative">
-                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white">
-                        <i data-feather="book-open"></i>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                        <h3 class="text-xl font-bold">Bachelor of Science in Geography</h3>
-                        <p class="text-indigo-600">APC College, West Bengal State University</p>
-                        <p class="text-gray-500">2019 - 2022 | New Barrackpore, India</p>
-                        <p class="mt-2 text-gray-700">CGPA: 8.73/10</p>
-                    </div>
-                </div>
-                
-                <!-- High School -->
-                <div class="timeline-item pl-12 relative">
-                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white">
-                        <i data-feather="home"></i>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                        <h3 class="text-xl font-bold">Higher Secondary Education</h3>
-                        <p class="text-indigo-600">Gobardanga Khantura High School</p>
-                        <p class="text-gray-500">2019 | Gobardanga, India</p>
-                        <p class="mt-2 text-gray-700">Percentage: 86.0%</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Technical Skills</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Programming Languages -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="code" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Programming Languages</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">R</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">STATA</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">SPSS</span>
-                    </div>
-                </div>
-                
-                <!-- Data Visualization -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="bar-chart-2" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Data Visualization</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Power BI</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Excel</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Tableau</span>
-                    </div>
-                </div>
-                
-                <!-- Geospatial Analysis -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="map" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Geospatial Analysis</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">ArcGIS</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">QGIS</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">GeoDa</span>
-                    </div>
-                </div>
-                
-                <!-- Demographic Tools -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="users" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Demographic Tools</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Mortpak</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Spectrum</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Anthropac</span>
-                    </div>
-                </div>
-                
-                <!-- Research Skills -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="search" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Research Skills</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Research Design</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Data Cleaning</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Report Writing</span>
-                    </div>
-                </div>
-                
-                <!-- Specialized Areas -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="star" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Specialized Areas</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Data Analysis</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">Data Visualization</span>
-                        <span class="skill-pill px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full">M&E</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Research Projects</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Healthy Ageing Project -->
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600">
-                    <h3 class="text-xl font-bold mb-2">Determinants of Healthy Ageing Among Older Adults in India</h3>
-                    <p class="text-indigo-600 mb-3">Master's Dissertation - IIPS Mumbai | April 2025</p>
-                    <ul class="space-y-2 text-gray-700">
-                        <li class="flex items-start">
-                            <i data-feather="check" class="text-indigo-600 mr-2 mt-1 w-5 h-5 flex-shrink-0"></i>
-                            <span>Constructed a Healthy Ageing Score using 43 indicators across functional health, chronic conditions, cognition, mental health, and social well-being using LASI Wave-1.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="check" class="text-indigo-600 mr-2 mt-1 w-5 h-5 flex-shrink-0"></i>
-                            <span>Conducted multivariate linear regression; used decomposition methods to examine gender differences in ageing outcomes.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="check" class="text-indigo-600 mr-2 mt-1"></i>
-                            <span>Tools used: STATA, R, MS Excel.</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Suicide Deaths Project -->
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600">
-                    <h3 class="text-xl font-bold mb-2">Demographic and Social Perspective of Suicide Deaths in India</h3>
-                    <p class="text-indigo-600 mb-3">IIPS Research Project | August 2025 - Present</p>
-                    <ul class="space-y-2 text-gray-700">
-                        <li class="flex items-start">
-                            <i data-feather="check" class="text-indigo-600 mr-2 mt-1 w-5 h-5 flex-shrink-0"></i>
-                            <span>Analyzing national-level data to understand patterns and determinants of suicide deaths across different demographic groups.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="check" class="text-indigo-600 mr-2 mt-1 w-5 h-5 flex-shrink-0"></i>
-                            <span>Developing geospatial visualizations to identify high-risk regions and populations.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="check" class="text-indigo-600 mr-2 mt-1"></i>
-                            <span>Tools used: R, STATA, ArcGIS, Power BI.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Certifications</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Epidemiology -->
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="shield" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Epidemiology: The Basic Science of Public Health</h3>
-                    </div>
-                    <p class="text-gray-600 mb-2">The Graduate School at the University of North Carolina at Chapel Hill</p>
-                    <p class="text-sm text-gray-500">April 2025</p>
-                </div>
-                
-                <!-- UGC NET JRF -->
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="award" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">UGC NET JRF Certificate</h3>
-                    </div>
-                    <p class="text-gray-600 mb-2">University Grants Commission</p>
-                    <p class="text-sm text-gray-500">March 2025</p>
-                </div>
-                
-                <!-- Vector-Borne Diseases -->
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="activity" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Basic Course in Vector-Borne Diseases for Health Professionals</h3>
-                    </div>
-                    <p class="text-gray-600 mb-2">ICMR - National Institute of Epidemiology</p>
-                    <p class="text-sm text-gray-500">January 2025</p>
-                </div>
-                
-                <!-- Scientific Writing -->
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="edit" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Scientific Writing in Health Research</h3>
-                    </div>
-                    <p class="text-gray-600 mb-2">ICMR - National Institute of Epidemiology</p>
-                    <p class="text-sm text-gray-500">December 2024</p>
-                </div>
-                
-                <!-- Google Data Analytics -->
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                            <i data-feather="bar-chart" class="text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-lg font-bold">Google Data Analytics Professional Certificate</h3>
-                    </div>
-                    <p class="text-gray-600 mb-2">Google</p>
-                    <p class="text-sm text-gray-500">June 2023</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-indigo-600 text-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Contact Information</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <i data-feather="mail" class="mr-3 mt-1"></i>
-                            <div>
-                                <p class="font-medium">Email</p>
-                                <a href="mailto:souviksarkariips@gmail.com" class="hover:underline">souviksarkariips@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <i data-feather="phone" class="mr-3 mt-1"></i>
-                            <div>
-                                <p class="font-medium">Phone</p>
-                                <a href="tel:+918250273592" class="hover:underline">+91 82502 73592</a>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <i data-feather="map-pin" class="mr-3 mt-1"></i>
-                            <div>
-                                <p class="font-medium">Location</p>
-                                <p>Mumbai, Maharashtra, 400088</p>
-                            </div>
-                        </div>
-                    </div>
+        <!-- ========== HERO SECTION ========== -->
+        <section id="hero" class="pt-24 pb-12 md:py-32 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-start"> <!-- Aligned to top -->
                     
-                    <div class="mt-8">
-                        <h3 class="text-xl font-bold mb-4">Connect With Me</h3>
-                        <div class="flex space-x-4">
-                            <a href="https://linkedin.com/in/souvikiips" target="_blank" rel="noopener noreferrer" class="bg-white text-indigo-600 p-3 rounded-full hover:bg-gray-100 transition">
-                                <i data-feather="linkedin"></i>
+                    <!-- Left Column (Text) -->
+                    <div class="md:col-span-3">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4" data-aos="fade-down" data-aos-delay="100">
+                            <span class="animated-gradient">Souvik Sarkar</span>
+                        </h1>
+                        <span class="block text-indigo-600 font-semibold mb-2" data-aos="fade-down" data-aos-delay="0">RESEARCHER & DATA ANALYST</span>
+                        <p class="text-lg text-gray-600 mb-8" data-aos="fade-down" data-aos-delay="200">
+                            A research professional skilled in demographic analysis, geospatial tools, and data visualization. I leverage data-driven insights to address challenges in public health and policy.
+                        </p>
+                        <div class="flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="300">
+                            <a href="#contact" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition transform hover:-translate-y-0.5">
+                                Get In Touch
                             </a>
-                            <a href="https://twitter.com/8ouvik" target="_blank" rel="noopener noreferrer" class="bg-white text-indigo-600 p-3 rounded-full hover:bg-gray-100 transition">
-                                <i data-feather="twitter"></i>
+                            <a href="CV_20251117.pdf" target="_blank" class="px-6 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition">
+                                View CV
                             </a>
-                            <a href="https://github.com/souvikio" target="_blank" rel="noopener noreferrer" class="bg-white text-indigo-600 p-3 rounded-full hover:bg-gray-100 transition">
-                                <i data-feather="github"></i>
+                        </div>
+                        <div class="mt-8 flex space-x-5" data-aos="fade-up" data-aos-delay="400">
+                            <a href="mailto:souviksarkariips@gmail.com" class="text-gray-500 hover:text-indigo-600 transition" title="Email">
+                                <i data-feather="mail" class="w-6 h-6"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/souvik-sarkar-iips/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-indigo-600 transition" title="LinkedIn">
+                                <i data-feather="linkedin" class="w-6 h-6"></i>
+                            </a>
+                            <a href="tel:+918250273592" class="text-gray-500 hover:text-indigo-600 transition" title="Phone">
+                                <i data-feather="phone" class="w-6 h-6"></i>
                             </a>
                         </div>
                     </div>
                     
-                    <div class="mt-8">
-                        <h3 class="text-xl font-bold mb-4">References</h3>
+                    <!-- Right Column (Image) -->
+                    <div class="md:col-span-2 flex justify-center" data-aos="fade-left" data-aos-delay="300">
+                        <div class="w-72 h-72 rounded-full overflow-hidden shadow-xl">
+                            <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/Souvik%20Sarkar%202025.jpg" alt="Souvik Sarkar" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== ABOUT SECTION ========== -->
+        <section id="about" class="pt-12 pb-20 md:py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Centered Text Block (Image removed from here) -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-3xl mx-auto">
+                        <h2 class="text-3xl font-bold mb-6">About Me</h2>
+                        <p class="text-lg text-gray-600 mb-6">
+                            A research professional currently working as a Research Assistant at IIPS Mumbai. I hold a Master of Science (MSc.) in Population Studies from IIPS, with an academic foundation in Geography and a qualified UGC JRF in Population Studies.
+                        </p>
+                        <p class="text-lg text-gray-600 mb-8">
+                            Skilled in demographic analysis, geospatial tools, data visualization, and monitoring and evaluation, with proficiency in Excel, R, STATA, ArcGIS, and Power BI. Experienced in using data-driven insights to address societal challenges in public health, population dynamics, and policy development.
+                        </p>
+                        <div class="flex flex-wrap justify-center gap-x-6 gap-y-4">
+                            <div class="flex items-center">
+                                <i data-feather="mail" class="mr-2 text-indigo-600"></i>
+                                <span>souviksarkariips@gmail.com</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="phone" class="mr-2 text-indigo-600"></i>
+                                <span>+91 82502 73592</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="map-pin" class="mr-2 text-indigo-600"></i>
+                                <span>Mumbai, Maharashtra, 400088</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SKILLS SECTION ========== -->
+        <section id="skills" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center" data-aos="fade-up">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">My Skills</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                        A breakdown of my technical and professional abilities.
+                    </p>
+                </div>
+
+                <div class="mt-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <!-- Programming & Software -->
+                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="code" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg font-bold">Programming & Software</h3>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">R</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">STATA</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">SPSS</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Data Visualization & Editing -->
+                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="bar-chart-2" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg font-bold">Data Visualization & Editing</h3>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Power BI</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Excel</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Word</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">PowerPoint</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Geospatial Analysis -->
+                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="map" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg font-bold">Geospatial Analysis</h3>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">ArcGIS</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">QGIS</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">GeoDa</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Demographic & Qualitative Tools -->
+                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="users" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg font-bold">Demographic & Qualitative</h3>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Mortpak</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Spectrum</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Anthropac</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">NVivo</span>
+                            </div>
+                        </div>
+
+                        <!-- Research Skills -->
+                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="book-open" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg font-bold">Research Skills</h3>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Research Design</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Data Cleaning</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Data Analysis</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Report Writing</span>
+                            </div>
+                        </div>
+
+                        <!-- Specialized Areas -->
+                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="star" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg font-bold">Specialized Areas</h3>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Presentation Designing</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">M&E</span>
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Data Visualization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========== EXPERIENCE SECTION ========== -->
+        <section id="experience" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center" data-aos="fade-up">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Work Experience</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                        My professional journey and key responsibilities.
+                    </p>
+                </div>
+                
+                <!-- Timeline -->
+                <div class="mt-12 relative">
+                    <!-- Vertical Line -->
+                    <div class="absolute left-6 md:left-1/2 w-0.5 h-full bg-gray-200 -translate-x-1/2" aria-hidden="true"></div>
+                    
+                    <div class="space-y-12">
+                        
+                        <!-- Item 1: PhD (Present) -->
+                        <div class="relative" data-aos="fade-up" data-aos-delay="100">
+                            <!-- Dot -->
+                            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-indigo-600 rounded-full -translate-x-1/2 mt-1.5 timeline-dot-present"></div>
+                            <!-- Card -->
+                            <div class="md:ml-1/2 md:pl-10 pl-14">
+                                <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold">Jan 2026 - Present</span>
+                                    <h3 class="text-xl font-bold mt-3">Ph.D. in Economics</h3>
+                                    <p class="text-md font-semibold text-indigo-600">Indian Institute of Technology Indore (IIT Indore)</p>
+                                    <p class="text-sm text-gray-500">Jan 2026 - Present | Indore, India</p>
+                                    <ul class="mt-3 space-y-2 text-gray-600">
+                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i>Doctoral researcher at the School of Humanities and Social Sciences.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2: IIPS -->
+                        <div class="relative" data-aos="fade-up" data-aos-delay="100">
+                            <!-- Dot -->
+                            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-gray-400 rounded-full -translate-x-1/2 mt-1.5"></div>
+                            <!-- Card -->
+                            <div class="md:text-right md:mr-1/2 md:pr-10 pl-14 md:pl-0">
+                                <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+                                    <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">Aug 2025 - Dec 2025</span>
+                                    <h3 class="text-xl font-bold mt-3">Research Assistant</h3>
+                                    <p class="text-md font-semibold text-indigo-600">International Institute for Population Sciences (IIPS)</p>
+                                    <p class="text-sm text-gray-500">Mumbai, India</p>
+                                    <p class="mt-3 text-gray-700 font-medium text-left md:text-right">Project: "Demographic and Social Perspective of Suicide Deaths in India"</p>
+                                    <ul class="mt-3 space-y-2 text-gray-600 text-left md:text-right">
+                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i></span>Managing and compiling government data. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500"></i></span></li>
+                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i></span>Writing codes for analysis (R, STATA, ArcGIS). <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500"></i></span></li>
+                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i></span>Preparing manuscripts and presentations. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500"></i></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 3: The Hans Foundation -->
+                        <div class="relative" data-aos="fade-up" data-aos-delay="100">
+                            <!-- Dot -->
+                            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-gray-400 rounded-full -translate-x-1/2 mt-1.5"></div>
+                            <!-- Card -->
+                            <div class="md:ml-1/2 md:pl-10 pl-14">
+                                <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+                                    <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">April 2024 - June 2024</span>
+                                    <h3 class="text-xl font-bold mt-3">Research Intern</h3>
+                                    <p class="text-md font-semibold text-indigo-600">The Hans Foundation</p>
+                                    <p class="text-sm text-gray-500">Meghalaya, India</p>
+                                    <ul class="mt-3 space-y-2 text-gray-600">
+                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i>Researched Traditional Birth Attendants' role in maternal health.</li>
+                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i>Collected primary data (FGDs, questionnaires, observations).</li>
+                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i>Co-authored a report proposing community interventions.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 4: AG Consultancy -->
+                        <div class="relative" data-aos="fade-up" data-aos-delay="100">
+                            <!-- Dot -->
+                            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-gray-400 rounded-full -translate-x-1/2 mt-1.5"></div>
+                            <!-- Card -->
+                            <div class="md:text-right md:mr-1/2 md:pr-10 pl-14 md:pl-0">
+                                <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+                                    <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">June 2024</span>
+                                    <h3 class="text-xl font-bold mt-3">Supervisor</h3>
+                                    <p class="text-md font-semibold text-indigo-600">AG Consultancy</p>
+                                    <p class="text-sm text-gray-500">Remote</p>
+                                    <ul class="mt-3 space-y-2 text-gray-600 text-left md:text-right">
+                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i></span>Monitored enumerators for ICRISAT Flood Insurance Project. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500"></i></span></li>
+                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i></span>Managed a team of enumerators, providing guidance. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500"></i></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PROJECTS SECTION ========== -->
+        <section id="projects" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center" data-aos="fade-up">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Research Projects</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                        Key academic and professional research I've contributed to.
+                    </p>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Project 1 -->
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="border-l-4 border-indigo-500 pl-4">
+                            <h3 class="text-xl font-bold text-gray-900">Determinants of Healthy Ageing Among Older Adults in India</h3>
+                            <p class="text-sm font-medium text-indigo-600 mt-1">Master's Dissertation - IIPS Mumbai</p>
+                        </div>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i data-feather="arrow-right" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i>
+                                <span>Constructed a Healthy Ageing Score using 43 indicators from LASI Wave-1.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="arrow-right" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i>
+                                <span>Conducted multivariate linear regression and decomposition to examine gender differences.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="arrow-right" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i>
+                                <span>Tools: STATA, R, MS Excel.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="border-l-4 border-indigo-500 pl-4">
+                            <h3 class="text-xl font-bold text-gray-900">Demographic and Social Perspective of Suicide Deaths in India</h3>
+                            <p class="text-sm font-medium text-indigo-600 mt-1">Ongoing Project - IIPS Mumbai</p>
+                        </div>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i data-feather="arrow-right" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i>
+                                <span>Analyzing trends and factors of suicide deaths using government data.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="arrow-right" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i>
+                                <span>Involved in data curation, analysis, and manuscript preparation.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="arrow-right" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i>
+                                <span>Tools: R, STATA, SPSS, ArcGIS.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== EDUCATION SECTION ========== -->
+        <section id="education" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center" data-aos="fade-up">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Education & Awards</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                        My academic qualifications and notable achievements.
+                    </p>
+                </div>
+                
+                <div class="mt-12 space-y-12">
+                    
+                    <!-- Education Column -->
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Education</h3>
+                        <div class="space-y-6">
+                            <!-- PhD -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="award" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Ph.D. in Economics</h3>
+                                    <p class="text-gray-700">Indian Institute of Technology Indore (IIT Indore)</p>
+                                    <p class="text-sm text-gray-500">Jan 2026 - Present</p>
+                                </div>
+                            </div>
+                            <!-- MSc -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="book-open" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Master of Science in Population Studies</h3>
+                                    <p class="text-gray-700">International Institute for Population Sciences (IIPS)</p>
+                                    <p class="text-sm text-gray-500">July 2023 - May 2025 | CGPA: 8.02/10</p>
+                                </div>
+                            </div>
+                            <!-- BSc -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="book-open" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Bachelor of Science in Geography</h3>
+                                    <p class="text-gray-700">APC College, West Bengal State University</p>
+                                    <p class="text-sm text-gray-500">2019 - 2022 | CGPA: 8.73/10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Awards Column -->
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Honors & Awards</h3>
+                        <div class="space-y-6">
+                            <!-- JRF -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="star" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">UGC NET JRF (Junior Research Fellowship)</h3>
+                                    <p class="text-gray-700">University Grants Commission, India</p>
+                                    <p class="text-sm text-gray-500">Dec 2024 | Population Studies</p>
+                                </div>
+                            </div>
+                            <!-- IIPS Fellowship -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="award" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Government of India Fellowship</h3>
+                                    <p class="text-gray-700">International Institute for Population Sciences</p>
+                                    <p class="text-sm text-gray-500">2023 - 2025</p>
+                                </div>
+                            </div>
+                            <!-- SVMCM Scholarship -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                                    <i data-feather="award" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Swami Vivekananda Merit-cum-Means Scholarship</h3>
+                                    <p class="text-gray-700">Government of West Bengal</p>
+                                    <p class="text-sm text-gray-500">2017 - 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ========== CONTACT & FOOTER SECTION ========== -->
+        <section id="contact" class="pt-20 pb-10 bg-indigo-600 text-white" data-aos="fade-up"> <!-- Merged padding -->
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    
+                    <!-- Left Column: Contact & Socials -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Contact Information</h3>
                         <div class="space-y-4">
-                            <div>
-                                <p class="font-medium">Dr. Suryakant Yadav</p>
-                                <p>Assistant Professor, Department of Bio-Statistics and Epidemiology</p>
-                                <p>International Institute for Population Sciences</p>
-                                <a href="mailto:suryakantyadav@iipsindia.ac.in" class="hover:underline">suryakantyadav@iipsindia.ac.in</a>
-                                <p>Phone: 022 - 42372561</p>
+                            <div class="flex items-start">
+                                <i data-feather="mail" class="mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-medium">Email</p>
+                                    <a href="mailto:souviksarkariips@gmail.com" class="hover:underline break-all">souviksarkariips@gmail.com</a>
+                                </div>
                             </div>
+                            <div class="flex items-start">
+                                <i data-feather="phone" class="mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-medium">Phone</p>
+                                    <a href="tel:+918250273592" class="hover:underline">+91 82502 73592</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i data-feather="map-pin" class="mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-medium">Location</p>
+                                    <p>Mumbai, Maharashtra, 400088</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-xl font-bold mb-4">Connect With Me</h3>
+                            <div class="flex space-x-4">
+                                <a href="https://linkedin.com/in/souvikiips" target="_blank" rel="noopener noreferrer" class="bg-white text-indigo-600 p-3 rounded-full hover:bg-gray-100 transition">
+                                    <i data-feather="linkedin"></i>
+                                </a>
+                                <a href="https://twitter.com/8ouvik" target="_blank" rel="noopener noreferrer" class="bg-white text-indigo-600 p-3 rounded-full hover:bg-gray-100 transition">
+                                    <i data-feather="twitter"></i>
+                                </a>
+                                <a href="https://github.com/souvikio" target="_blank" rel="noopener noreferrer" class="bg-white text-indigo-600 p-3 rounded-full hover:bg-gray-100 transition">
+                                    <i data-feather="github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: References -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">References</h3>
+                        <div class="space-y-6">
+                            <!-- Reference 1 -->
                             <div>
-                                <p class="font-medium">Dr. Nandita Saikia</p>
-                                <p>Professor, Department of Public Health and Mortality Studies</p>
-                                <p>International Institute for Population Sciences</p>
-                                <a href="mailto:nanditasaikia@iipsindia.ac.in" class="hover:underline">nanditasaikia@iipsindia.ac.in</a>
-                                <p>Phone: 022 - 42372455</p>
+                                <h4 class="text-lg font-medium">Dr. Suryakant Yadav</h4>
+                                <div class="space-y-1 mt-1">
+                                    <p class="text-sm text-indigo-200">Assistant Professor, Department of Bio-Statistics and Epidemiology, IIPS</p>
+                                    <p class="text-sm text-indigo-200">Relationship: Guide</p>
+                                    <a href="mailto:suryakantyadav@iipsindia.ac.in" class="text-sm hover:underline break-all text-indigo-100 block">suryakantyadav@iipsindia.ac.in</a>
+                                    <p class="text-sm text-indigo-200">Phone: 022 - 42372561</p>
+                                </div>
+                            </div>
+                            <!-- Reference 2 -->
+                            <div>
+                                <h4 class="text-lg font-medium">Dr. Nandita Saikia</h4>
+                                <div class="space-y-1 mt-1">
+                                    <p class="text-sm text-indigo-200">Professor, Department of Public Health and Mortality Studies, IIPS</p>
+                                    <p class="text-sm text-indigo-200">Relationship: Professor</p>
+                                    <a href="mailto:nanditasaikia@iipsindia.ac.in" class="text-sm hover:underline break-all text-indigo-100 block">nanditasaikia@iipsindia.ac.in</a>
+                                    <p class="text-sm text-indigo-200">Phone: 022 - 42372455</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div>
-                    <form id="contact-form" action="https://formsubmit.co/souviksarkariips@gmail.com" method="POST" class="space-y-6">
-    <input type="hidden" name="_ajax" value="true">
-    <input type="hidden" name="_captcha" value="false">
 
-    <div>
-        <label for="name" class="block mb-2 font-medium">Your Name</label>
-        <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-indigo-700 border border-indigo-500 rounded-md focus:outline-none focus:ring-2 focus:ring-white" placeholder="Enter your name">
-    </div>
-    <div>
-        <label for="email" class="block mb-2 font-medium">Email Address</label>
-        <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-indigo-700 border border-indigo-500 rounded-md focus:outline-none focus:ring-2 focus:ring-white" placeholder="Enter your email">
-    </div>
-    <div>
-        <label for="subject" class="block mb-2 font-medium">Subject</label>
-        <input type="text" id="subject" name="subject" required class="w-full px-4 py-2 bg-indigo-700 border border-indigo-500 rounded-md focus:outline-none focus:ring-2 focus:ring-white" placeholder="Enter subject">
-    </div>
-    <div>
-        <label for="message" class="block mb-2 font-medium">Message</label>
-        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 bg-indigo-700 border border-indigo-500 rounded-md focus:outline-none focus:ring-2 focus:ring-white" placeholder="Enter your message"></textarea>
-    </div>
-    <button type="submit" class="px-6 py-3 bg-white text-indigo-600 rounded-md hover:bg-gray-100 transition">Send Message</button>
-</form>
-                    <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-md text-center">
-    <p>Thank you for your message! I'll get back to you soon.</p>
-    <a href="#" id="send-another" class="text-sm text-indigo-600 hover:underline mt-2 inline-block">Send another message?</a>
-</div>
+                <!-- Footer text integrated here -->
+                <div class="mt-12 pt-6 border-t border-indigo-500">
+                    <p class="text-center text-indigo-200 text-sm">
+                        &copy; 2025 Souvik Sarkar. All rights reserved.
+                    </p>
                 </div>
+
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Rest of your HTML remains the same -->
+    </main>
 
-<script>
-    // This function waits for the whole page to load before running any JS
-    window.addEventListener('DOMContentLoaded', (event) => {
+    <!-- FOOTER IS NOW PART OF THE CONTACT SECTION -->
 
-        feather.replace();
-        
-        // Initialize Vanta.js
-        VANTA.GLOBE({
-            el: "#hero",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: "#6366f1",
-            backgroundColor: "#f8fafc"
-        });
-        
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuBtn.addEventListener('click', function() {
-            mobileMenu.classList.toggle('open');
-            if (mobileMenu.classList.contains('open')) {
-                menuBtn.innerHTML = feather.icons.x.toSvg();
-            } else {
-                menuBtn.innerHTML = feather.icons.menu.toSvg();
-            }
-        });
-        
-        // Close menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                menuBtn.innerHTML = feather.icons.menu.toSvg();
+
+    <!-- ========== JAVASCRIPT ========== -->
+
+    <!-- Animate On Scroll (AOS) Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- AOS Initialization ---
+            // This initializes the animation library *after* the DOM is loaded
+            AOS.init({
+                duration: 700,      // Animation duration
+                easing: 'ease-out-quad', // Animation easing
+                once: false,         // Animate every time
+                mirror: true,       // Animate in AND out
+                offset: 50,         // Trigger offset
             });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+            
+            // --- Feather Icons ---
+            feather.replace();
+
+            // --- Mobile Menu Toggle ---
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = menuBtn.querySelector('i');
+            
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                // Toggle icon
+                const isOpen = !mobileMenu.classList.contains('hidden');
+                menuIcon.setAttribute('data-feather', isOpen ? 'x' : 'menu');
+                feather.replace(); // Re-run feather to draw the new icon
+            });
+            
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(item => {
+                item.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.setAttribute('data-feather', 'menu');
+                    feather.replace();
                 });
             });
         });
+    </script>
 
-        // --- Contact Form Logic ---
-        const contactForm = document.getElementById('contact-form');
-        const successMessage = document.getElementById('form-success');
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            
-            fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    contactForm.style.display = 'none';
-                    successMessage.classList.remove('hidden');
-                    contactForm.reset(); 
-                } else {
-                    alert('Oops! Something went wrong on the server. Please try again.');
-                }
-            }).catch(error => {
-                alert('Oops! A network error occurred. Please check your internet connection and try again.');
-            });
-        });
-
-        // --- "Send Another Message" Link Logic ---
-        const sendAnotherBtn = document.getElementById('send-another');
-
-        sendAnotherBtn.addEventListener('click', function(e) {
-            e.preventDefault(); 
-            successMessage.classList.add('hidden'); 
-            contactForm.style.display = 'block'; 
-        });
-
-    }); // End of the DOMContentLoaded function
-</script>
 </body>
 </html>
