@@ -8,6 +8,20 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Tailwind Config for Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
     <!-- Animate On Scroll (AOS) Library CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -66,45 +80,63 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900 overflow-x-hidden">
+<body class="bg-gray-100 text-gray-900 overflow-x-hidden dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
 
     <!-- ========== HEADER & NAVIGATION ========== -->
-    <header class="fixed top-0 left-0 right-0 bg-white/60 backdrop-blur-2xl backdrop-saturate-150 shadow-sm z-50 border-b border-white/20">
+    <!-- CHANGED: bg-white/60 -> bg-white/30 and dark:bg-gray-900/80 -> dark:bg-gray-900/50 -->
+    <header class="fixed top-0 left-0 right-0 bg-white/30 dark:bg-gray-900/50 backdrop-blur-2xl backdrop-saturate-150 shadow-sm z-50 border-b border-white/20 dark:border-gray-700 transition-colors duration-300">
         <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo / Name -->
                 <div class="flex-shrink-0">
-                    <a href="#hero" class="text-xl font-bold text-gray-800">Souvik Sarkar</a>
+                    <a href="#hero" class="text-xl font-bold text-gray-800 dark:text-gray-100">Souvik Sarkar</a>
                 </div>
                 
                 <!-- Desktop Nav -->
                 <div class="hidden md:flex md:items-center md:space-x-6">
-                    <a href="#about" class="text-gray-600 hover:text-indigo-600 transition">About</a>
-                    <a href="#skills" class="text-gray-600 hover:text-indigo-600 transition">Skills</a>
-                    <a href="#experience" class="text-gray-600 hover:text-indigo-600 transition">Experience</a>
-                    <a href="#projects" class="text-gray-600 hover:text-indigo-600 transition">Projects</a>
-                    <a href="#education" class="text-gray-600 hover:text-indigo-600 transition">Education</a>
-                    <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                    <a href="#about" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition">About</a>
+                    <a href="#skills" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition">Skills</a>
+                    <a href="#experience" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition">Experience</a>
+                    <a href="#projects" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition">Projects</a>
+                    <a href="#education" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition">Education</a>
+                    <a href="#contact" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition">Contact</a>
+                    
+                    <!-- Dark Mode Toggle Button (Desktop) -->
+                    <button id="theme-toggle" class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 transition-colors">
+                        <i id="theme-toggle-dark-icon" data-feather="moon" class="w-5 h-5 hidden"></i>
+                        <i id="theme-toggle-light-icon" data-feather="sun" class="w-5 h-5 hidden"></i>
+                    </button>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="p-2 rounded-md text-gray-600 hover:bg-gray-200 transition">
-                        <i data-feather="menu" class="w-6 h-6"></i>
+                <div class="md:hidden flex items-center space-x-4">
+                    <!-- Dark Mode Toggle Button (Mobile) -->
+                    <button id="theme-toggle-mobile" class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 transition-colors">
+                        <i id="theme-toggle-dark-icon-mobile" data-feather="moon" class="w-5 h-5 hidden"></i>
+                        <i id="theme-toggle-light-icon-mobile" data-feather="sun" class="w-5 h-5 hidden"></i>
+                    </button>
+                    
+                    <!-- Mobile Menu Hamburger Button -->
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <!-- Icon Open (Menu) -->
+                        <i id="mobile-menu-icon-open" data-feather="menu" class="w-6 h-6"></i>
+                        <!-- Icon Close (X) - Hidden by default -->
+                        <i id="mobile-menu-icon-close" data-feather="x" class="w-6 h-6 hidden"></i>
                     </button>
                 </div>
             </div>
         </nav>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden border-t border-white/20">
+        <!-- REMOVED: bg-white dark:bg-gray-900 (Now it uses the parent header's glass background) -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-white/20 dark:border-gray-700 transition-colors duration-300">
             <div class="px-4 pt-2 pb-4 space-y-2">
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">About</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Skills</a>
-                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Experience</a>
-                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Projects</a>
-                <a href="#education" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Education</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Contact</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Skills</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Experience</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Projects</a>
+                <a href="#education" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Education</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
             </div>
         </div>
     </header>
@@ -113,17 +145,17 @@
     <main class="pt-16">
 
         <!-- ========== HERO SECTION ========== -->
-        <section id="hero" class="pt-24 pb-12 md:py-32 bg-white">
+        <section id="hero" class="pt-24 pb-12 md:py-32 bg-white dark:bg-gray-900 transition-colors duration-300">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-start"> <!-- Aligned to top -->
                     
                     <!-- Left Column (Text) -->
                     <div class="md:col-span-3">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4" data-aos="fade-down" data-aos-delay="100">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-4" data-aos="fade-down" data-aos-delay="100">
                             <span class="animated-gradient">Souvik Sarkar</span>
                         </h1>
-                        <span class="block text-indigo-600 font-semibold mb-2" data-aos="fade-down" data-aos-delay="0">RESEARCHER & DATA ANALYST</span>
-                        <p class="text-lg text-gray-600 mb-8" data-aos="fade-down" data-aos-delay="200">
+                        <span class="block text-indigo-600 dark:text-indigo-400 font-semibold mb-2" data-aos="fade-down" data-aos-delay="0">RESEARCHER & DATA ANALYST</span>
+                        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8" data-aos="fade-down" data-aos-delay="200">
                             A research professional skilled in demographic analysis, geospatial tools, and data visualization. I leverage data-driven insights to address challenges in public health and policy.
                         </p>
                         <div class="flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="300">
@@ -131,18 +163,18 @@
                                 Get In Touch
                             </a>
                             <!-- Updated to jsDelivr CDN Link (Serves raw file for viewing, not downloading) -->
-                            <a href="https://cdn.jsdelivr.net/gh/souvikio/souvikio.github.io@main/assets/Souvik_Sarkar_CV.pdf" target="_blank" class="px-6 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition">
+                            <a href="https://cdn.jsdelivr.net/gh/souvikio/souvikio.github.io@main/assets/Souvik_Sarkar_CV.pdf" target="_blank" class="px-6 py-3 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white font-semibold rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition">
                                 View CV
                             </a>
                         </div>
                         <div class="mt-8 flex space-x-5" data-aos="fade-up" data-aos-delay="400">
-                            <a href="mailto:souviksarkariips@gmail.com" class="text-gray-500 hover:text-indigo-600 transition" title="Email">
+                            <a href="mailto:souviksarkariips@gmail.com" class="text-gray-500 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition" title="Email">
                                 <i data-feather="mail" class="w-6 h-6"></i>
                             </a>
-                            <a href="https://www.linkedin.com/in/souvik-sarkar-iips/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-indigo-600 transition" title="LinkedIn">
+                            <a href="https://www.linkedin.com/in/souvik-sarkar-iips/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition" title="LinkedIn">
                                 <i data-feather="linkedin" class="w-6 h-6"></i>
                             </a>
-                            <a href="tel:+918250273592" class="text-gray-500 hover:text-indigo-600 transition" title="Phone">
+                            <a href="tel:+918250273592" class="text-gray-500 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition" title="Phone">
                                 <i data-feather="phone" class="w-6 h-6"></i>
                             </a>
                         </div>
@@ -150,7 +182,7 @@
                     
                     <!-- Right Column (Image) -->
                     <div class="md:col-span-2 flex justify-center" data-aos="fade-left" data-aos-delay="300">
-                        <div class="w-72 h-72 rounded-full overflow-hidden shadow-xl">
+                        <div class="w-72 h-72 rounded-full overflow-hidden shadow-xl border-4 border-white dark:border-gray-800">
                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/Souvik%20Sarkar%202025.jpg" alt="Souvik Sarkar" class="w-full h-full object-cover">
                         </div>
                     </div>
@@ -160,29 +192,29 @@
         </section>
 
         <!-- ========== ABOUT SECTION ========== -->
-        <section id="about" class="pt-12 pb-20 md:py-20 bg-white">
+        <section id="about" class="pt-12 pb-20 md:py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Centered Text Block (Image removed from here) -->
                 <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="max-w-3xl mx-auto">
-                        <h2 class="text-3xl font-bold mb-6">About Me</h2>
-                        <p class="text-lg text-gray-600 mb-6">
+                        <h2 class="text-3xl font-bold mb-6 dark:text-white">About Me</h2>
+                        <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
                             A research professional currently working as a Research Assistant at IIPS Mumbai. I hold a Master of Science (MSc.) in Population Studies from IIPS, with an academic foundation in Geography and a qualified UGC JRF in Population Studies.
                         </p>
-                        <p class="text-lg text-gray-600 mb-8">
+                        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
                             Skilled in demographic analysis, geospatial tools, data visualization, and monitoring and evaluation, with proficiency in Excel, R, STATA, ArcGIS, and Power BI. Experienced in using data-driven insights to address societal challenges in public health, population dynamics, and policy development.
                         </p>
-                        <div class="flex flex-wrap justify-center gap-x-6 gap-y-4">
+                        <div class="flex flex-wrap justify-center gap-x-6 gap-y-4 text-gray-700 dark:text-gray-300">
                             <div class="flex items-center">
-                                <i data-feather="mail" class="mr-2 text-indigo-600"></i>
+                                <i data-feather="mail" class="mr-2 text-indigo-600 dark:text-indigo-400"></i>
                                 <span>souviksarkariips@gmail.com</span>
                             </div>
                             <div class="flex items-center">
-                                <i data-feather="phone" class="mr-2 text-indigo-600"></i>
+                                <i data-feather="phone" class="mr-2 text-indigo-600 dark:text-indigo-400"></i>
                                 <span>+91 82502 73592</span>
                             </div>
                             <div class="flex items-center">
-                                <i data-feather="map-pin" class="mr-2 text-indigo-600"></i>
+                                <i data-feather="map-pin" class="mr-2 text-indigo-600 dark:text-indigo-400"></i>
                                 <span>Mumbai, Maharashtra, 400088</span>
                             </div>
                         </div>
@@ -192,11 +224,11 @@
         </section>
 
         <!-- ========== SKILLS SECTION ========== -->
-        <section id="skills" class="py-20 bg-white">
+        <section id="skills" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center" data-aos="fade-up">
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">My Skills</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">My Skills</h2>
+                    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         A breakdown of my technical and professional abilities.
                     </p>
                 </div>
@@ -205,95 +237,95 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         
                         <!-- Programming & Software -->
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                        <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md transition-colors duration-300">
                             <div class="flex items-center space-x-3">
-                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center">
                                     <i data-feather="code" class="w-5 h-5"></i>
                                 </div>
-                                <h3 class="text-lg font-bold">Programming & Software</h3>
+                                <h3 class="text-lg font-bold dark:text-white">Programming & Software</h3>
                             </div>
                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">R</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">STATA</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">SPSS</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">R</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">STATA</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">SPSS</span>
                             </div>
                         </div>
                         
                         <!-- Data Visualization & Editing -->
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                        <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md transition-colors duration-300">
                             <div class="flex items-center space-x-3">
-                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center">
                                     <i data-feather="bar-chart-2" class="w-5 h-5"></i>
                                 </div>
-                                <h3 class="text-lg font-bold">Data Visualization & Editing</h3>
+                                <h3 class="text-lg font-bold dark:text-white">Data Visualization & Editing</h3>
                             </div>
                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Power BI</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Excel</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Word</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">PowerPoint</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Power BI</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Excel</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Word</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">PowerPoint</span>
                             </div>
                         </div>
                         
                         <!-- Geospatial Analysis -->
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                        <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md transition-colors duration-300">
                             <div class="flex items-center space-x-3">
-                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center">
                                     <i data-feather="map" class="w-5 h-5"></i>
                                 </div>
-                                <h3 class="text-lg font-bold">Geospatial Analysis</h3>
+                                <h3 class="text-lg font-bold dark:text-white">Geospatial Analysis</h3>
                             </div>
                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">ArcGIS</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">QGIS</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">GeoDa</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">ArcGIS</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">QGIS</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">GeoDa</span>
                             </div>
                         </div>
                         
                         <!-- Demographic & Qualitative Tools -->
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                        <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md transition-colors duration-300">
                             <div class="flex items-center space-x-3">
-                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center">
                                     <i data-feather="users" class="w-5 h-5"></i>
                                 </div>
-                                <h3 class="text-lg font-bold">Demographic & Qualitative</h3>
+                                <h3 class="text-lg font-bold dark:text-white">Demographic & Qualitative</h3>
                             </div>
                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Mortpak</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Spectrum</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Anthropac</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">NVivo</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Mortpak</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Spectrum</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Anthropac</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">NVivo</span>
                             </div>
                         </div>
 
                         <!-- Research Skills -->
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                        <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md transition-colors duration-300">
                             <div class="flex items-center space-x-3">
-                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center">
                                     <i data-feather="book-open" class="w-5 h-5"></i>
                                 </div>
-                                <h3 class="text-lg font-bold">Research Skills</h3>
+                                <h3 class="text-lg font-bold dark:text-white">Research Skills</h3>
                             </div>
                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Research Design</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Data Cleaning</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Data Analysis</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Report Writing</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Research Design</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Data Cleaning</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Data Analysis</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Report Writing</span>
                             </div>
                         </div>
 
                         <!-- Specialized Areas -->
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-md">
+                        <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md transition-colors duration-300">
                             <div class="flex items-center space-x-3">
-                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center">
                                     <i data-feather="star" class="w-5 h-5"></i>
                                 </div>
-                                <h3 class="text-lg font-bold">Specialized Areas</h3>
+                                <h3 class="text-lg font-bold dark:text-white">Specialized Areas</h3>
                             </div>
                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Presentation Designing</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">M&E</span>
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Data Visualization</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Presentation Designing</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">M&E</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-medium">Data Visualization</span>
                             </div>
                         </div>
                     </div>
@@ -303,11 +335,11 @@
 
 
         <!-- ========== EXPERIENCE SECTION ========== -->
-        <section id="experience" class="py-20 bg-white">
+        <section id="experience" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center" data-aos="fade-up">
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Work Experience</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">Work Experience</h2>
+                    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         My professional journey and key responsibilities.
                     </p>
                 </div>
@@ -315,7 +347,7 @@
                 <!-- Timeline -->
                 <div class="mt-12 relative">
                     <!-- Vertical Line -->
-                    <div class="absolute left-6 md:left-1/2 w-0.5 h-full bg-gray-200 -translate-x-1/2" aria-hidden="true"></div>
+                    <div class="absolute left-6 md:left-1/2 w-0.5 h-full bg-gray-200 dark:bg-gray-700 -translate-x-1/2" aria-hidden="true"></div>
                     
                     <div class="space-y-12">
                         
@@ -325,20 +357,21 @@
                             <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-indigo-600 rounded-full -translate-x-1/2 mt-1.5 timeline-dot-present"></div>
                             <!-- Card -->
                             <div class="md:ml-1/2 md:pl-10 pl-14">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+                                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-colors duration-300">
                                     <div class="flex flex-col-reverse sm:flex-row justify-between items-start gap-4">
                                         <div>
-                                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold">Jan 2026 - Present</span>
-                                            <h3 class="text-xl font-bold mt-3">Ph.D. in Economics</h3>
-                                            <p class="text-md font-semibold text-indigo-600">Indian Institute of Technology Indore (IIT Indore)</p>
-                                            <p class="text-sm text-gray-500">Jan 2026 - Present | Indore, India</p>
+                                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 rounded-full text-sm font-semibold">Jan 2026 - Present</span>
+                                            <h3 class="text-xl font-bold mt-3 dark:text-white">Ph.D. in Economics</h3>
+                                            <p class="text-md font-semibold text-indigo-600 dark:text-indigo-400">Indian Institute of Technology Indore (IIT Indore)</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">Jan 2026 - Present | Indore, India</p>
                                         </div>
                                         <!-- Logo: Left aligned by default in flex-col-reverse -->
-                                        <div class="flex-shrink-0">
+                                        <!-- ADDED: bg-transparent dark:bg-white rounded-full p-1 -->
+                                        <div class="flex-shrink-0 bg-transparent dark:bg-white rounded-full p-1">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iiti_logo.svg" class="h-16 w-16 object-contain" alt="IIT Indore Logo">
                                         </div>
                                     </div>
-                                    <ul class="mt-4 space-y-2 text-gray-600">
+                                    <ul class="mt-4 space-y-2 text-gray-600 dark:text-gray-300">
                                         <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i><span>Doctoral researcher at the School of Humanities and Social Sciences.</span></li>
                                     </ul>
                                 </div>
@@ -348,33 +381,34 @@
                         <!-- Item 2: IIPS -->
                         <div class="relative" data-aos="fade-up" data-aos-delay="100">
                             <!-- Dot -->
-                            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-gray-400 rounded-full -translate-x-1/2 mt-1.5"></div>
+                            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-gray-400 dark:bg-gray-600 rounded-full -translate-x-1/2 mt-1.5"></div>
                             <!-- Card -->
                             <div class="md:text-right md:mr-1/2 md:pr-10 pl-14 md:pl-0">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+                                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-colors duration-300">
                                     
                                     <div class="flex flex-col-reverse sm:flex-row sm:justify-between items-start sm:items-start gap-4">
                                         <!-- DESKTOP Logo (Hidden on Mobile) -->
-                                        <div class="hidden md:block flex-shrink-0">
+                                        <!-- ADDED: bg-transparent dark:bg-white rounded-full p-1 -->
+                                        <div class="hidden md:block flex-shrink-0 bg-transparent dark:bg-white rounded-full p-1">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iips_logo.svg" class="h-16 w-16 object-contain scale-125" alt="IIPS Logo">
                                         </div>
                                         
                                         <div class="w-full">
-                                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">Aug 2025 - Dec 2025</span>
-                                            <h3 class="text-xl font-bold mt-3">Research Assistant</h3>
-                                            <p class="text-md font-semibold text-indigo-600">International Institute for Population Sciences (IIPS)</p>
-                                            <p class="text-sm text-gray-500">Mumbai, India</p>
+                                            <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm font-semibold">Aug 2025 - Dec 2025</span>
+                                            <h3 class="text-xl font-bold mt-3 dark:text-white">Research Assistant</h3>
+                                            <p class="text-md font-semibold text-indigo-600 dark:text-indigo-400">International Institute for Population Sciences (IIPS)</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">Mumbai, India</p>
                                         </div>
                                         
                                         <!-- MOBILE Only Logo -->
-                                        <!-- CHANGED: self-end to self-start so it stays on LEFT in mobile -->
-                                        <div class="md:hidden flex-shrink-0 self-start">
+                                        <!-- ADDED: bg-transparent dark:bg-white rounded-full p-1 -->
+                                        <div class="md:hidden flex-shrink-0 self-start bg-transparent dark:bg-white rounded-full p-1">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iips_logo.svg" class="h-14 w-14 object-contain scale-125" alt="IIPS Logo">
                                         </div>
                                     </div>
 
-                                    <p class="mt-3 text-gray-700 font-medium text-left md:text-right">Project: "Demographic and Social Perspective of Suicide Deaths in India"</p>
-                                    <ul class="mt-3 space-y-2 text-gray-600 text-left md:text-right">
+                                    <p class="mt-3 text-gray-700 dark:text-gray-300 font-medium text-left md:text-right">Project: "Demographic and Social Perspective of Suicide Deaths in India"</p>
+                                    <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-400 text-left md:text-right">
                                         <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i></span>Managing and compiling government data. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500 flex-shrink-0"></i></span></li>
                                         <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i></span>Writing codes for analysis (R, STATA, ArcGIS). <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500 flex-shrink-0"></i></span></li>
                                         <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i></span>Preparing manuscripts and presentations. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500 flex-shrink-0"></i></span></li>
@@ -386,23 +420,24 @@
                         <!-- Item 3: The Hans Foundation -->
                         <div class="relative" data-aos="fade-up" data-aos-delay="100">
                             <!-- Dot -->
-                            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-gray-400 rounded-full -translate-x-1/2 mt-1.5"></div>
+                            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-gray-400 dark:bg-gray-600 rounded-full -translate-x-1/2 mt-1.5"></div>
                             <!-- Card -->
                             <div class="md:ml-1/2 md:pl-10 pl-14">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+                                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-colors duration-300">
                                     <div class="flex flex-col-reverse sm:flex-row justify-between items-start gap-4">
                                         <div>
-                                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">April 2024 - June 2024</span>
-                                            <h3 class="text-xl font-bold mt-3">Research Intern</h3>
-                                            <p class="text-md font-semibold text-indigo-600">The Hans Foundation</p>
-                                            <p class="text-sm text-gray-500">Meghalaya, India</p>
+                                            <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm font-semibold">April 2024 - June 2024</span>
+                                            <h3 class="text-xl font-bold mt-3 dark:text-white">Research Intern</h3>
+                                            <p class="text-md font-semibold text-indigo-600 dark:text-indigo-400">The Hans Foundation</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">Meghalaya, India</p>
                                         </div>
                                         <!-- Logo: Left aligned by default -->
-                                        <div class="flex-shrink-0">
+                                        <!-- ADDED: bg-transparent dark:bg-white rounded-lg p-1 -->
+                                        <div class="flex-shrink-0 bg-transparent dark:bg-white rounded-lg p-1">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/thf_logo.png" class="h-12 md:h-14 w-auto object-contain" alt="Hans Foundation Logo">
                                         </div>
                                     </div>
-                                    <ul class="mt-4 space-y-2 text-gray-600">
+                                    <ul class="mt-4 space-y-2 text-gray-600 dark:text-gray-300">
                                         <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i><span>Researched Traditional Birth Attendants' role in maternal health.</span></li>
                                         <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i><span>Collected primary data (FGDs, questionnaires, observations).</span></li>
                                         <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i><span>Co-authored a report proposing community interventions.</span></li>
@@ -414,31 +449,32 @@
                         <!-- Item 4: AG Consultancy -->
                         <div class="relative" data-aos="fade-up" data-aos-delay="100">
                             <!-- Dot -->
-                            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-gray-400 rounded-full -translate-x-1/2 mt-1.5"></div>
+                            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-gray-400 dark:bg-gray-600 rounded-full -translate-x-1/2 mt-1.5"></div>
                             <!-- Card -->
                             <div class="md:text-right md:mr-1/2 md:pr-10 pl-14 md:pl-0">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+                                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-colors duration-300">
                                     <div class="flex flex-col-reverse sm:flex-row sm:justify-between items-start sm:items-start gap-4">
                                         <!-- DESKTOP Logo -->
-                                        <div class="hidden md:block flex-shrink-0">
+                                        <!-- EXCEPTION: Kept bg-transparent dark:bg-transparent for AG Consultancy as requested -->
+                                        <div class="hidden md:block flex-shrink-0 bg-transparent dark:bg-transparent rounded-lg p-1">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/agc_logo.png" class="h-12 w-auto object-contain" alt="AG Consultancy Logo">
                                         </div>
                                         
                                         <div class="w-full">
-                                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">June 2024</span>
-                                            <h3 class="text-xl font-bold mt-3">Supervisor</h3>
-                                            <p class="text-md font-semibold text-indigo-600">AG Consultancy</p>
-                                            <p class="text-sm text-gray-500">Remote</p>
+                                            <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm font-semibold">June 2024</span>
+                                            <h3 class="text-xl font-bold mt-3 dark:text-white">Supervisor</h3>
+                                            <p class="text-md font-semibold text-indigo-600 dark:text-indigo-400">AG Consultancy</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">Remote</p>
                                         </div>
                                         
                                         <!-- MOBILE Only Logo -->
-                                        <!-- CHANGED: self-end to self-start so it stays on LEFT in mobile -->
-                                        <div class="md:hidden flex-shrink-0 self-start">
+                                        <!-- EXCEPTION: Kept bg-transparent dark:bg-transparent for AG Consultancy as requested -->
+                                        <div class="md:hidden flex-shrink-0 self-start bg-transparent dark:bg-transparent rounded-lg p-1">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/agc_logo.png" class="h-10 w-auto object-contain" alt="AG Consultancy Logo">
                                         </div>
                                     </div>
 
-                                    <ul class="mt-4 space-y-2 text-gray-600 text-left md:text-right">
+                                    <ul class="mt-4 space-y-2 text-gray-600 dark:text-gray-300 text-left md:text-right">
                                         <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i></span>Monitored enumerators for ICRISAT Flood Insurance Project. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500 flex-shrink-0"></i></span></li>
                                         <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i></span>Managed a team of enumerators, providing guidance. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500 flex-shrink-0"></i></span></li>
                                     </ul>
@@ -450,13 +486,13 @@
                 </div>
             </div>
         </section>
-
+        
         <!-- ========== PROJECTS SECTION ========== -->
-        <section id="projects" class="py-20 bg-white">
+        <section id="projects" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center" data-aos="fade-up">
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Research Projects</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">Research Projects</h2>
+                    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         Key academic and professional research I've contributed to.
                     </p>
                 </div>
@@ -464,12 +500,12 @@
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
                     
                     <!-- Project 1 -->
-                    <div class="bg-gray-100 p-6 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-lg overflow-hidden transition-colors duration-300" data-aos="fade-up" data-aos-delay="100">
                         <div class="border-l-4 border-indigo-500 pl-4">
-                            <h3 class="text-xl font-bold text-gray-900">Determinants of Healthy Ageing Among Older Adults in India</h3>
-                            <p class="text-sm font-medium text-indigo-600 mt-1">Master's Dissertation - IIPS Mumbai</p>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Determinants of Healthy Ageing Among Older Adults in India</h3>
+                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400 mt-1">Master's Dissertation - IIPS Mumbai</p>
                         </div>
-                        <ul class="mt-4 space-y-2 text-gray-600">
+                        <ul class="mt-4 space-y-2 text-gray-600 dark:text-gray-300">
                             <li class="flex items-start">
                                 <i data-feather="arrow-right" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i>
                                 <span>Constructed a Healthy Ageing Score using 43 indicators from LASI Wave-1.</span>
@@ -486,12 +522,12 @@
                     </div>
                     
                     <!-- Project 2 -->
-                    <div class="bg-gray-100 p-6 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-lg overflow-hidden transition-colors duration-300" data-aos="fade-up" data-aos-delay="200">
                         <div class="border-l-4 border-indigo-500 pl-4">
-                            <h3 class="text-xl font-bold text-gray-900">Demographic and Social Perspective of Suicide Deaths in India</h3>
-                            <p class="text-sm font-medium text-indigo-600 mt-1">Ongoing Project - IIPS Mumbai</p>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Demographic and Social Perspective of Suicide Deaths in India</h3>
+                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400 mt-1">Ongoing Project - IIPS Mumbai</p>
                         </div>
-                        <ul class="mt-4 space-y-2 text-gray-600">
+                        <ul class="mt-4 space-y-2 text-gray-600 dark:text-gray-300">
                             <li class="flex items-start">
                                 <i data-feather="arrow-right" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i>
                                 <span>Analyzing trends and factors of suicide deaths using government data.</span>
@@ -512,11 +548,11 @@
         </section>
 
         <!-- ========== EDUCATION SECTION ========== -->
-        <section id="education" class="py-20 bg-white">
+        <section id="education" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center" data-aos="fade-up">
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Education & Awards</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">Education & Awards</h2>
+                    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         My academic qualifications and notable achievements.
                     </p>
                 </div>
@@ -525,166 +561,88 @@
                     
                     <!-- Education Column -->
                     <div data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Education</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Education</h3>
                         <div class="space-y-6">
                             <!-- PhD -->
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                            <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md flex items-center space-x-4 transition-colors duration-300">
                                 <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-2">
                                     <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iiti_logo.svg" alt="IIT Indore Logo" class="w-full h-full object-contain">
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-bold">Ph.D. in Economics</h3>
-                                    <p class="text-gray-700">Indian Institute of Technology Indore (IIT Indore)</p>
-                                    <p class="text-sm text-gray-500">Jan 2026 - Present</p>
+                                    <h3 class="text-lg font-bold dark:text-white">Ph.D. in Economics</h3>
+                                    <p class="text-gray-700 dark:text-gray-300">Indian Institute of Technology Indore (IIT Indore)</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Jan 2026 - Present</p>
                                 </div>
                             </div>
-                            <!-- PLAN B (Original Icon Version) -->
-                            <!--
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
-                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
-                                    <i data-feather="award" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold">Ph.D. in Economics</h3>
-                                    <p class="text-gray-700">Indian Institute of Technology Indore (IIT Indore)</p>
-                                    <p class="text-sm text-gray-500">Jan 2026 - Present</p>
-                                </div>
-                            </div>
-                            -->
 
                             <!-- MSc -->
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                            <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md flex items-center space-x-4 transition-colors duration-300">
                                 <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-1">
                                     <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iips_logo.svg" alt="IIPS Logo" class="w-full h-full object-contain scale-110">
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-bold">Master of Science in Population Studies</h3>
-                                    <p class="text-gray-700">International Institute for Population Sciences (IIPS)</p>
-                                    <p class="text-sm text-gray-500">July 2023 - May 2025 | CGPA: 8.02/10</p>
+                                    <h3 class="text-lg font-bold dark:text-white">Master of Science in Population Studies</h3>
+                                    <p class="text-gray-700 dark:text-gray-300">International Institute for Population Sciences (IIPS)</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">July 2023 - May 2025 | CGPA: 8.02/10</p>
                                 </div>
                             </div>
-                            <!-- PLAN B (Original Icon Version) -->
-                            <!--
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
-                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
-                                    <i data-feather="book-open" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold">Master of Science in Population Studies</h3>
-                                    <p class="text-gray-700">International Institute for Population Sciences (IIPS)</p>
-                                    <p class="text-sm text-gray-500">July 2023 - May 2025 | CGPA: 8.02/10</p>
-                                </div>
-                            </div>
-                            -->
 
                             <!-- BSc -->
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                            <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md flex items-center space-x-4 transition-colors duration-300">
                                 <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-1">
                                     <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/wbsu_logo.svg" alt="WBSU Logo" class="w-full h-full object-contain">
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-bold">Bachelor of Science in Geography</h3>
-                                    <p class="text-gray-700">APC College, West Bengal State University</p>
-                                    <p class="text-sm text-gray-500">2019 - 2022 | CGPA: 8.73/10</p>
+                                    <h3 class="text-lg font-bold dark:text-white">Bachelor of Science in Geography</h3>
+                                    <p class="text-gray-700 dark:text-gray-300">APC College, West Bengal State University</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">2019 - 2022 | CGPA: 8.73/10</p>
                                 </div>
                             </div>
-                            <!-- PLAN B (Original Icon Version) -->
-                            <!--
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
-                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
-                                    <i data-feather="book-open" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold">Bachelor of Science in Geography</h3>
-                                    <p class="text-gray-700">APC College, West Bengal State University</p>
-                                    <p class="text-sm text-gray-500">2019 - 2022 | CGPA: 8.73/10</p>
-                                </div>
-                            </div>
-                            -->
                         </div>
                     </div>
                     
                     <!-- Awards Column -->
                     <div data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Honors & Awards</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Honors & Awards</h3>
                         <div class="space-y-6">
                             <!-- JRF -->
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                            <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md flex items-center space-x-4 transition-colors duration-300">
                                 <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-2">
                                     <!-- Using generic UGC Logo -->
                                     <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/UGC_India_Logo.png" alt="UGC Logo" class="w-full h-full object-contain">
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-bold">UGC NET JRF (Junior Research Fellowship)</h3>
-                                    <p class="text-gray-700">University Grants Commission, India</p>
-                                    <p class="text-sm text-gray-500">Dec 2024 | Population Studies</p>
+                                    <h3 class="text-lg font-bold dark:text-white">UGC NET JRF (Junior Research Fellowship)</h3>
+                                    <p class="text-gray-700 dark:text-gray-300">University Grants Commission, India</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Dec 2024 | Population Studies</p>
                                 </div>
                             </div>
-                            <!-- PLAN B (Original Icon Version) -->
-                            <!--
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
-                                <div class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-                                    <i data-feather="star" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold">UGC NET JRF (Junior Research Fellowship)</h3>
-                                    <p class="text-gray-700">University Grants Commission, India</p>
-                                    <p class="text-sm text-gray-500">Dec 2024 | Population Studies</p>
-                                </div>
-                            </div>
-                            -->
 
                             <!-- GOI Fellowship -->
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                            <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md flex items-center space-x-4 transition-colors duration-300">
                                 <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-2">
                                     <!-- Replaced IIPS with Govt of India Logo -->
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Government_of_India_logo.svg/2560px-Government_of_India_logo.svg.png?20220331190844" alt="Government of India Logo" class="w-full h-full object-contain">
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-bold">Government of India Fellowship</h3>
-                                    <p class="text-gray-700">International Institute for Population Sciences</p>
-                                    <p class="text-sm text-gray-500">2023 - 2025</p>
+                                    <h3 class="text-lg font-bold dark:text-white">Government of India Fellowship</h3>
+                                    <p class="text-gray-700 dark:text-gray-300">International Institute for Population Sciences</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">2023 - 2025</p>
                                 </div>
                             </div>
-                            <!-- PLAN B (Original Icon Version) -->
-                            <!--
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
-                                <div class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-                                    <i data-feather="award" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold">Government of India Fellowship</h3>
-                                    <p class="text-gray-700">International Institute for Population Sciences</p>
-                                    <p class="text-sm text-gray-500">2023 - 2025</p>
-                                </div>
-                            </div>
-                            -->
 
                             <!-- SVMCM Scholarship -->
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                            <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg shadow-md flex items-center space-x-4 transition-colors duration-300">
                                 <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-2">
                                     <!-- Zoomed West Bengal Govt Emblem -->
                                     <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/66/Emblem_of_West_Bengal_%282018-present%29.svg/960px-Emblem_of_West_Bengal_%282018-present%29.svg.png?20240501000626" alt="Govt of West Bengal Logo" class="w-full h-full object-contain scale-125">
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-bold">Swami Vivekananda Merit-cum-Means Scholarship</h3>
-                                    <p class="text-gray-700">Government of West Bengal</p>
-                                    <p class="text-sm text-gray-500">2017 - 2022</p>
+                                    <h3 class="text-lg font-bold dark:text-white">Swami Vivekananda Merit-cum-Means Scholarship</h3>
+                                    <p class="text-gray-700 dark:text-gray-300">Government of West Bengal</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">2017 - 2022</p>
                                 </div>
                             </div>
-                            <!-- PLAN B (Original Icon Version) -->
-                            <!--
-                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
-                                <div class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-                                    <i data-feather="award" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold">Swami Vivekananda Merit-cum-Means Scholarship</h3>
-                                    <p class="text-gray-700">Government of West Bengal</p>
-                                    <p class="text-sm text-gray-500">2017 - 2022</p>
-                                </div>
-                            </div>
-                            -->
                         </div>
                     </div>
                 </div>
@@ -792,6 +750,59 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
+            // --- Dark Mode Logic ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+            const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+            
+            const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+            const themeToggleDarkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
+            const themeToggleLightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
+
+            // Check for saved user preference, if any, on load of the website
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeToggleLightIcon.classList.remove('hidden');
+                if(themeToggleLightIconMobile) themeToggleLightIconMobile.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+                if(themeToggleDarkIconMobile) themeToggleDarkIconMobile.classList.remove('hidden');
+            }
+
+            function toggleTheme() {
+                // toggle icons inside button
+                themeToggleDarkIcon.classList.toggle('hidden');
+                themeToggleLightIcon.classList.toggle('hidden');
+                if(themeToggleDarkIconMobile) themeToggleDarkIconMobile.classList.toggle('hidden');
+                if(themeToggleLightIconMobile) themeToggleLightIconMobile.classList.toggle('hidden');
+
+                // if set via local storage previously
+                if (localStorage.getItem('color-theme')) {
+                    if (localStorage.getItem('color-theme') === 'light') {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    }
+
+                // if NOT set via local storage previously
+                } else {
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    }
+                }
+            }
+
+            themeToggleBtn.addEventListener('click', toggleTheme);
+            if(themeToggleBtnMobile) themeToggleBtnMobile.addEventListener('click', toggleTheme);
+
+
             // --- AOS Initialization ---
             // This initializes the animation library *after* the DOM is loaded
             AOS.init({
@@ -805,25 +816,28 @@
             // --- Feather Icons ---
             feather.replace();
 
-            // --- Mobile Menu Toggle ---
+            // --- Mobile Menu Toggle (FIXED) ---
             const menuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
-            const menuIcon = menuBtn.querySelector('i');
+            
+            // Select the two specific icons by ID
+            const menuIconOpen = document.getElementById('mobile-menu-icon-open');
+            const menuIconClose = document.getElementById('mobile-menu-icon-close');
             
             menuBtn.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
-                // Toggle icon
-                const isOpen = !mobileMenu.classList.contains('hidden');
-                menuIcon.setAttribute('data-feather', isOpen ? 'x' : 'menu');
-                feather.replace(); // Re-run feather to draw the new icon
+                // Toggle visibility classes instead of replacing SVG
+                menuIconOpen.classList.toggle('hidden');
+                menuIconClose.classList.toggle('hidden');
             });
             
             // Close mobile menu when a link is clicked
             mobileMenu.querySelectorAll('a').forEach(item => {
                 item.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
-                    menuIcon.setAttribute('data-feather', 'menu');
-                    feather.replace();
+                    // Ensure menu is set to Open state (Hamburger visible, X hidden)
+                    menuIconOpen.classList.remove('hidden');
+                    menuIconClose.classList.add('hidden');
                 });
             });
         });
