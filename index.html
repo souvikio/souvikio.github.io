@@ -325,12 +325,20 @@
                             <!-- Card -->
                             <div class="md:ml-1/2 md:pl-10 pl-14">
                                 <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
-                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold">Jan 2026 - Present</span>
-                                    <h3 class="text-xl font-bold mt-3">Ph.D. in Economics</h3>
-                                    <p class="text-md font-semibold text-indigo-600">Indian Institute of Technology Indore (IIT Indore)</p>
-                                    <p class="text-sm text-gray-500">Jan 2026 - Present | Indore, India</p>
-                                    <ul class="mt-3 space-y-2 text-gray-600">
-                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i>Doctoral researcher at the School of Humanities and Social Sciences.</li>
+                                    <div class="flex flex-col-reverse sm:flex-row justify-between items-start gap-4">
+                                        <div>
+                                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold">Jan 2026 - Present</span>
+                                            <h3 class="text-xl font-bold mt-3">Ph.D. in Economics</h3>
+                                            <p class="text-md font-semibold text-indigo-600">Indian Institute of Technology Indore (IIT Indore)</p>
+                                            <p class="text-sm text-gray-500">Jan 2026 - Present | Indore, India</p>
+                                        </div>
+                                        <!-- Logo: Square-ish -->
+                                        <div class="flex-shrink-0">
+                                            <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iiti_logo.svg" class="h-16 w-16 object-contain" alt="IIT Indore Logo">
+                                        </div>
+                                    </div>
+                                    <ul class="mt-4 space-y-2 text-gray-600">
+                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i><span>Doctoral researcher at the School of Humanities and Social Sciences.</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -343,15 +351,37 @@
                             <!-- Card -->
                             <div class="md:text-right md:mr-1/2 md:pr-10 pl-14 md:pl-0">
                                 <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
-                                    <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">Aug 2025 - Dec 2025</span>
-                                    <h3 class="text-xl font-bold mt-3">Research Assistant</h3>
-                                    <p class="text-md font-semibold text-indigo-600">International Institute for Population Sciences (IIPS)</p>
-                                    <p class="text-sm text-gray-500">Mumbai, India</p>
+                                    <!-- Reverse Flex direction for Right Aligned Card on Desktop to keep logo on outside edge (optional, but looks cool) or keep standard -->
+                                    <!-- Let's keep standard header layout for consistency, but text aligned right -->
+                                    <div class="flex flex-col-reverse sm:flex-row sm:justify-between items-start sm:items-start gap-4">
+                                        <!-- Logo (First on mobile, Last on desktop if we want, but let's stick to Right Side Logo for consistency) -->
+                                        <!-- Actually for the 'Right Side' timeline cards, usually people like the logo on the Left (inner side) or Right (outer side).
+                                             Let's put the logo on the LEFT for this specific card so it mirrors the timeline structure if you want, 
+                                             OR just keep it simple: Text Left, Logo Right.
+                                             Given the text-align right, let's put the logo on the LEFT side of the text block.
+                                        -->
+                                        <div class="hidden md:block flex-shrink-0">
+                                            <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iips_logo.svg" class="h-16 w-16 object-contain scale-125" alt="IIPS Logo">
+                                        </div>
+                                        
+                                        <div class="w-full">
+                                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">Aug 2025 - Dec 2025</span>
+                                            <h3 class="text-xl font-bold mt-3">Research Assistant</h3>
+                                            <p class="text-md font-semibold text-indigo-600">International Institute for Population Sciences (IIPS)</p>
+                                            <p class="text-sm text-gray-500">Mumbai, India</p>
+                                        </div>
+                                        
+                                        <!-- Mobile Only Logo (shows on right) -->
+                                        <div class="md:hidden flex-shrink-0 self-end">
+                                            <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iips_logo.svg" class="h-14 w-14 object-contain scale-125" alt="IIPS Logo">
+                                        </div>
+                                    </div>
+
                                     <p class="mt-3 text-gray-700 font-medium text-left md:text-right">Project: "Demographic and Social Perspective of Suicide Deaths in India"</p>
                                     <ul class="mt-3 space-y-2 text-gray-600 text-left md:text-right">
-                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i></span>Managing and compiling government data. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500"></i></span></li>
-                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i></span>Writing codes for analysis (R, STATA, ArcGIS). <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500"></i></span></li>
-                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i></span>Preparing manuscripts and presentations. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500"></i></span></li>
+                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i></span>Managing and compiling government data. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500 flex-shrink-0"></i></span></li>
+                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i></span>Writing codes for analysis (R, STATA, ArcGIS). <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500 flex-shrink-0"></i></span></li>
+                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i></span>Preparing manuscripts and presentations. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500 flex-shrink-0"></i></span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -364,14 +394,22 @@
                             <!-- Card -->
                             <div class="md:ml-1/2 md:pl-10 pl-14">
                                 <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
-                                    <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">April 2024 - June 2024</span>
-                                    <h3 class="text-xl font-bold mt-3">Research Intern</h3>
-                                    <p class="text-md font-semibold text-indigo-600">The Hans Foundation</p>
-                                    <p class="text-sm text-gray-500">Meghalaya, India</p>
-                                    <ul class="mt-3 space-y-2 text-gray-600">
-                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i>Researched Traditional Birth Attendants' role in maternal health.</li>
-                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i>Collected primary data (FGDs, questionnaires, observations).</li>
-                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i>Co-authored a report proposing community interventions.</li>
+                                    <div class="flex flex-col-reverse sm:flex-row justify-between items-start gap-4">
+                                        <div>
+                                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">April 2024 - June 2024</span>
+                                            <h3 class="text-xl font-bold mt-3">Research Intern</h3>
+                                            <p class="text-md font-semibold text-indigo-600">The Hans Foundation</p>
+                                            <p class="text-sm text-gray-500">Meghalaya, India</p>
+                                        </div>
+                                        <!-- Logo: Wide - We allow width to be auto and constrain height -->
+                                        <div class="flex-shrink-0">
+                                            <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/thf_logo.png" class="h-12 md:h-14 w-auto object-contain" alt="Hans Foundation Logo">
+                                        </div>
+                                    </div>
+                                    <ul class="mt-4 space-y-2 text-gray-600">
+                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i><span>Researched Traditional Birth Attendants' role in maternal health.</span></li>
+                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i><span>Collected primary data (FGDs, questionnaires, observations).</span></li>
+                                        <li class="flex items-start"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i><span>Co-authored a report proposing community interventions.</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -384,13 +422,28 @@
                             <!-- Card -->
                             <div class="md:text-right md:mr-1/2 md:pr-10 pl-14 md:pl-0">
                                 <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
-                                    <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">June 2024</span>
-                                    <h3 class="text-xl font-bold mt-3">Supervisor</h3>
-                                    <p class="text-md font-semibold text-indigo-600">AG Consultancy</p>
-                                    <p class="text-sm text-gray-500">Remote</p>
-                                    <ul class="mt-3 space-y-2 text-gray-600 text-left md:text-right">
-                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i></span>Monitored enumerators for ICRISAT Flood Insurance Project. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500"></i></span></li>
-                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500"></i></span>Managed a team of enumerators, providing guidance. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500"></i></span></li>
+                                    <div class="flex flex-col-reverse sm:flex-row sm:justify-between items-start sm:items-start gap-4">
+                                        <!-- Logo Left for Desktop Right-Aligned Card -->
+                                        <div class="hidden md:block flex-shrink-0">
+                                            <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/agc_logo.png" class="h-12 w-auto object-contain" alt="AG Consultancy Logo">
+                                        </div>
+                                        
+                                        <div class="w-full">
+                                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">June 2024</span>
+                                            <h3 class="text-xl font-bold mt-3">Supervisor</h3>
+                                            <p class="text-md font-semibold text-indigo-600">AG Consultancy</p>
+                                            <p class="text-sm text-gray-500">Remote</p>
+                                        </div>
+                                        
+                                        <!-- Mobile Only Logo -->
+                                        <div class="md:hidden flex-shrink-0 self-end">
+                                            <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/agc_logo.png" class="h-10 w-auto object-contain" alt="AG Consultancy Logo">
+                                        </div>
+                                    </div>
+
+                                    <ul class="mt-4 space-y-2 text-gray-600 text-left md:text-right">
+                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i></span>Monitored enumerators for ICRISAT Flood Insurance Project. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500 flex-shrink-0"></i></span></li>
+                                        <li class="flex items-start md:justify-end"><span class="md:hidden"><i data-feather="check-circle" class="w-4 h-4 mr-2 mt-1 text-indigo-500 flex-shrink-0"></i></span>Managed a team of enumerators, providing guidance. <span class="hidden md:inline-block"><i data-feather="check-circle" class="w-4 h-4 ml-2 mt-1 text-indigo-500 flex-shrink-0"></i></span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -478,6 +531,18 @@
                         <h3 class="text-2xl font-bold text-gray-900 mb-6">Education</h3>
                         <div class="space-y-6">
                             <!-- PhD -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                                <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-2">
+                                    <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iiti_logo.svg" alt="IIT Indore Logo" class="w-full h-full object-contain">
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Ph.D. in Economics</h3>
+                                    <p class="text-gray-700">Indian Institute of Technology Indore (IIT Indore)</p>
+                                    <p class="text-sm text-gray-500">Jan 2026 - Present</p>
+                                </div>
+                            </div>
+                            <!-- PLAN B (Original Icon Version) -->
+                            <!--
                             <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
                                     <i data-feather="award" class="w-5 h-5"></i>
@@ -488,7 +553,21 @@
                                     <p class="text-sm text-gray-500">Jan 2026 - Present</p>
                                 </div>
                             </div>
+                            -->
+
                             <!-- MSc -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                                <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-1">
+                                    <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iips_logo.svg" alt="IIPS Logo" class="w-full h-full object-contain scale-110">
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Master of Science in Population Studies</h3>
+                                    <p class="text-gray-700">International Institute for Population Sciences (IIPS)</p>
+                                    <p class="text-sm text-gray-500">July 2023 - May 2025 | CGPA: 8.02/10</p>
+                                </div>
+                            </div>
+                            <!-- PLAN B (Original Icon Version) -->
+                            <!--
                             <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
                                     <i data-feather="book-open" class="w-5 h-5"></i>
@@ -499,7 +578,21 @@
                                     <p class="text-sm text-gray-500">July 2023 - May 2025 | CGPA: 8.02/10</p>
                                 </div>
                             </div>
+                            -->
+
                             <!-- BSc -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                                <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-1">
+                                    <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/wbsu_logo.svg" alt="WBSU Logo" class="w-full h-full object-contain">
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Bachelor of Science in Geography</h3>
+                                    <p class="text-gray-700">APC College, West Bengal State University</p>
+                                    <p class="text-sm text-gray-500">2019 - 2022 | CGPA: 8.73/10</p>
+                                </div>
+                            </div>
+                            <!-- PLAN B (Original Icon Version) -->
+                            <!--
                             <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
                                     <i data-feather="book-open" class="w-5 h-5"></i>
@@ -510,6 +603,7 @@
                                     <p class="text-sm text-gray-500">2019 - 2022 | CGPA: 8.73/10</p>
                                 </div>
                             </div>
+                            -->
                         </div>
                     </div>
                     
@@ -518,6 +612,19 @@
                         <h3 class="text-2xl font-bold text-gray-900 mb-6">Honors & Awards</h3>
                         <div class="space-y-6">
                             <!-- JRF -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                                <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-2">
+                                    <!-- Using generic UGC Logo -->
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/UGC_India_Logo.png" alt="UGC Logo" class="w-full h-full object-contain">
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">UGC NET JRF (Junior Research Fellowship)</h3>
+                                    <p class="text-gray-700">University Grants Commission, India</p>
+                                    <p class="text-sm text-gray-500">Dec 2024 | Population Studies</p>
+                                </div>
+                            </div>
+                            <!-- PLAN B (Original Icon Version) -->
+                            <!--
                             <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
                                     <i data-feather="star" class="w-5 h-5"></i>
@@ -528,7 +635,22 @@
                                     <p class="text-sm text-gray-500">Dec 2024 | Population Studies</p>
                                 </div>
                             </div>
-                            <!-- IIPS Fellowship -->
+                            -->
+
+                            <!-- GOI Fellowship -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                                <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-2">
+                                    <!-- Replaced IIPS with Govt of India Logo -->
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Government_of_India_logo.svg/2560px-Government_of_India_logo.svg.png?20220331190844" alt="Government of India Logo" class="w-full h-full object-contain">
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Government of India Fellowship</h3>
+                                    <p class="text-gray-700">International Institute for Population Sciences</p>
+                                    <p class="text-sm text-gray-500">2023 - 2025</p>
+                                </div>
+                            </div>
+                            <!-- PLAN B (Original Icon Version) -->
+                            <!--
                             <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
                                     <i data-feather="award" class="w-5 h-5"></i>
@@ -539,7 +661,22 @@
                                     <p class="text-sm text-gray-500">2023 - 2025</p>
                                 </div>
                             </div>
+                            -->
+
                             <!-- SVMCM Scholarship -->
+                            <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-center space-x-4">
+                                <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden p-2">
+                                    <!-- Zoomed West Bengal Govt Emblem -->
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/66/Emblem_of_West_Bengal_%282018-present%29.svg/960px-Emblem_of_West_Bengal_%282018-present%29.svg.png?20240501000626" alt="Govt of West Bengal Logo" class="w-full h-full object-contain scale-125">
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Swami Vivekananda Merit-cum-Means Scholarship</h3>
+                                    <p class="text-gray-700">Government of West Bengal</p>
+                                    <p class="text-sm text-gray-500">2017 - 2022</p>
+                                </div>
+                            </div>
+                            <!-- PLAN B (Original Icon Version) -->
+                            <!--
                             <div class="bg-gray-50 p-5 rounded-lg shadow-md flex items-start space-x-4">
                                 <div class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
                                     <i data-feather="award" class="w-5 h-5"></i>
@@ -550,6 +687,7 @@
                                     <p class="text-sm text-gray-500">2017 - 2022</p>
                                 </div>
                             </div>
+                            -->
                         </div>
                     </div>
                 </div>
