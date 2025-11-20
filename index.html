@@ -333,7 +333,7 @@
                                             <p class="text-md font-semibold text-indigo-600">Indian Institute of Technology Indore (IIT Indore)</p>
                                             <p class="text-sm text-gray-500">Jan 2026 - Present | Indore, India</p>
                                         </div>
-                                        <!-- Logo: Square-ish -->
+                                        <!-- Logo: Left aligned by default in flex-col-reverse -->
                                         <div class="flex-shrink-0">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iiti_logo.svg" class="h-16 w-16 object-contain" alt="IIT Indore Logo">
                                         </div>
@@ -352,15 +352,9 @@
                             <!-- Card -->
                             <div class="md:text-right md:mr-1/2 md:pr-10 pl-14 md:pl-0">
                                 <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
-                                    <!-- Reverse Flex direction for Right Aligned Card on Desktop to keep logo on outside edge (optional, but looks cool) or keep standard -->
-                                    <!-- Let's keep standard header layout for consistency, but text aligned right -->
+                                    
                                     <div class="flex flex-col-reverse sm:flex-row sm:justify-between items-start sm:items-start gap-4">
-                                        <!-- Logo (First on mobile, Last on desktop if we want, but let's stick to Right Side Logo for consistency) -->
-                                        <!-- Actually for the 'Right Side' timeline cards, usually people like the logo on the Left (inner side) or Right (outer side).
-                                             Let's put the logo on the LEFT for this specific card so it mirrors the timeline structure if you want, 
-                                             OR just keep it simple: Text Left, Logo Right.
-                                             Given the text-align right, let's put the logo on the LEFT side of the text block.
-                                        -->
+                                        <!-- DESKTOP Logo (Hidden on Mobile) -->
                                         <div class="hidden md:block flex-shrink-0">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iips_logo.svg" class="h-16 w-16 object-contain scale-125" alt="IIPS Logo">
                                         </div>
@@ -372,8 +366,9 @@
                                             <p class="text-sm text-gray-500">Mumbai, India</p>
                                         </div>
                                         
-                                        <!-- Mobile Only Logo (shows on right) -->
-                                        <div class="md:hidden flex-shrink-0 self-end">
+                                        <!-- MOBILE Only Logo -->
+                                        <!-- CHANGED: self-end to self-start so it stays on LEFT in mobile -->
+                                        <div class="md:hidden flex-shrink-0 self-start">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/iips_logo.svg" class="h-14 w-14 object-contain scale-125" alt="IIPS Logo">
                                         </div>
                                     </div>
@@ -402,7 +397,7 @@
                                             <p class="text-md font-semibold text-indigo-600">The Hans Foundation</p>
                                             <p class="text-sm text-gray-500">Meghalaya, India</p>
                                         </div>
-                                        <!-- Logo: Wide - We allow width to be auto and constrain height -->
+                                        <!-- Logo: Left aligned by default -->
                                         <div class="flex-shrink-0">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/thf_logo.png" class="h-12 md:h-14 w-auto object-contain" alt="Hans Foundation Logo">
                                         </div>
@@ -424,7 +419,7 @@
                             <div class="md:text-right md:mr-1/2 md:pr-10 pl-14 md:pl-0">
                                 <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
                                     <div class="flex flex-col-reverse sm:flex-row sm:justify-between items-start sm:items-start gap-4">
-                                        <!-- Logo Left for Desktop Right-Aligned Card -->
+                                        <!-- DESKTOP Logo -->
                                         <div class="hidden md:block flex-shrink-0">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/agc_logo.png" class="h-12 w-auto object-contain" alt="AG Consultancy Logo">
                                         </div>
@@ -436,8 +431,9 @@
                                             <p class="text-sm text-gray-500">Remote</p>
                                         </div>
                                         
-                                        <!-- Mobile Only Logo -->
-                                        <div class="md:hidden flex-shrink-0 self-end">
+                                        <!-- MOBILE Only Logo -->
+                                        <!-- CHANGED: self-end to self-start so it stays on LEFT in mobile -->
+                                        <div class="md:hidden flex-shrink-0 self-start">
                                             <img src="https://raw.githubusercontent.com/souvikio/portfolio-assets/main/agc_logo.png" class="h-10 w-auto object-contain" alt="AG Consultancy Logo">
                                         </div>
                                     </div>
